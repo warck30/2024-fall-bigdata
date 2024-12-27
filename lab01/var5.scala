@@ -1,17 +1,28 @@
 object UniqueWordsApp extends App {
+
   def getText(): String = {
-    val text = scala.io.StdIn.readLine("Введите текст: ")
-    text
+    scala.io.StdIn.readLine("Введите текст: ")
   }
 
-  // Функция для разбиения текста на слова и удаления дубликатов
-  def getUniqueWords(text: String): List[String] = {
-    text.split("\\s+").toList.toSet.toList
+  def splitTextIntoWords(text: String): List[String] = {
+    text.split("\\s+").toList
   }
 
-  val text = getText()
-  val uniqueWords = getUniqueWords(text)
+  def removeDuplicates(words: List[String]): List[String] = {
+    words.toSet.toList
+  }
 
-  println("Уникальные слова:")
-  uniqueWords.foreach(println)
+  def printWords(words: List[String]): Unit = {
+    println("Уникальные слова:")
+    words.foreach(println)
+  }
+
+  def main(): Unit = {
+    val text = getText()
+    val words = splitTextIntoWords(text)
+    val uniqueWords = removeDuplicates(words)
+    printWords(uniqueWords)
+  }
+
+  main()
 }
